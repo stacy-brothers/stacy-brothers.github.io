@@ -1,0 +1,218 @@
+<html>
+    <head>
+        <title>JSON and XMLHTTPRequest</title>
+        <link rel="stylesheet" type="text/css" href="./../index.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="clearfix">
+            <div class="header">
+                <div class="header-container">
+                    <div class="header-text">Stacy Brothers - CIT 261</div>                        
+                </div>
+            </div>
+            <div class="content">
+                <div class="page-title">JSON and using XMLHTTPRequest</div>
+                <div>
+                    <div><br><br>The <b>XMLHttpRequest</b> is a way to request a response from a url.  That url is usually a website and in our example it will be a website that is a RESTful web service that returns a JSON dataset.<br><br>
+                        There are three main parts to a XMLHttpRequest.  The <b>onreadystatechange</b> function that you need to define. The <b>open</b> function that defines the kind of request and url.  And the <b>send</b> function that starts the process.<br>
+                        Some websites will require you to send header information as well.  You can do that with the <b>setRequestHeader</b> function before calling the send.<br><br>
+                        The <b>onreadystatechange</b> function is called anytime that the server that you are calling sends a response back.  The important parts about this are the readyState, status and responseText.<br><br>
+                        The <b>readyState</b> is a value between 0 and 4.  Really the only state we are usually interested in is state 4 which means that the server is competed it's response.<br><br>
+                        The <b>status</b> is the code that tells if the call was successful or not.<br>
+                        Some typical status codes:
+                        - 200 - success<br>
+                        - 201 - created (this would be the response if you requested a service add a record)<br>
+                        - 401 - unauthorized ( this would mean you aren't allowed to use this service)<br>
+                        - 404 - not found <br>
+                        - 500 - server error<br><br>
+                        The <b>responseText</b> is the response if the call was successful.<br><br>  
+                        The url that we are calling in the example below returns a list of todo items.  It returns the items as a JSON string.  This is a very typical type of response.<br><br>
+                        To deal with this response we use the <b>JSON.parse</b> function.  This function turns the string of JSON data into a JavaScript object.<br><br>
+                        We can then use that object like we would any other javascript object.  The displayAsObject function uses the object that we got from the JSON.parse function.  In this case, since it was a list the object is actually an array of objects. <br><br>
+                        The XMLHttpRequest can also be used to send data to a server.  In the doPost function a new todo object is sent to the service.
+                        <br><br></div>
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> todoList;
+loadJsonWS <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">var</span> xhttp <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> XMLHttpRequest();
+    xhttp.onreadystatechange <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.readyState <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">4</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">this</span>.status <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">200</span>) {
+            todoList <span style="color: #333333">=</span> JSON.parse(<span style="color: #008800; font-weight: bold">this</span>.responseText);
+            alert(<span style="background-color: #fff0f0">&quot;Loaded!&quot;</span>);
+        } <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span> ( <span style="color: #008800; font-weight: bold">this</span>.readyState <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">4</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">this</span>.status <span style="color: #333333">!=</span> <span style="color: #0000DD; font-weight: bold">200</span>) {
+            alert(<span style="background-color: #fff0f0">&quot;The server sent back an error! status:&quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.status <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.statusText);
+        }
+    };
+    xhttp.open(<span style="background-color: #fff0f0">&quot;GET&quot;</span>, <span style="background-color: #fff0f0">&quot;https://jsonplaceholder.typicode.com/users/1/todos&quot;</span>, <span style="color: #008800; font-weight: bold">true</span>);
+    xhttp.send();
+}
+
+displayAsObject <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() { 
+    <span style="color: #008800; font-weight: bold">if</span> ( todoList <span style="color: #333333">&amp;&amp;</span> todoList[<span style="color: #0000DD; font-weight: bold">0</span>] ) {
+        alert( <span style="background-color: #fff0f0">&quot;todo id: &quot;</span> <span style="color: #333333">+</span> todoList[<span style="color: #0000DD; font-weight: bold">0</span>].id <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - title: &quot;</span> <span style="color: #333333">+</span> todoList[<span style="color: #0000DD; font-weight: bold">0</span>].title <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> (todoList[<span style="color: #0000DD; font-weight: bold">0</span>].completed<span style="color: #333333">?</span><span style="background-color: #fff0f0">&quot; It was completed.&quot;</span><span style="color: #333333">:</span><span style="background-color: #fff0f0">&quot;It wasn&#39;t completed.&quot;</span>) );
+    } <span style="color: #008800; font-weight: bold">else</span> { 
+        alert(<span style="background-color: #fff0f0">&quot;Haven&#39;t loaded it yet or there was a problem connecting to server.&quot;</span>)
+    }
+}
+
+doPost <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">var</span> xhttp <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> XMLHttpRequest();
+    xhttp.onreadystatechange <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.readyState <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">4</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">this</span>.status <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">201</span>) {
+            todoList <span style="color: #333333">=</span> JSON.parse(<span style="color: #008800; font-weight: bold">this</span>.responseText);
+            alert(<span style="background-color: #fff0f0">&quot;Posted!&quot;</span>);
+        } <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span> ( <span style="color: #008800; font-weight: bold">this</span>.readyState <span style="color: #333333">==</span> <span style="color: #0000DD; font-weight: bold">4</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">this</span>.status <span style="color: #333333">!=</span> <span style="color: #0000DD; font-weight: bold">200</span>) {
+            alert(<span style="background-color: #fff0f0">&quot;The server sent back an error! status:&quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.status <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.statusText);
+        }
+    };
+    xhttp.open(<span style="background-color: #fff0f0">&quot;POST&quot;</span>, <span style="background-color: #fff0f0">&quot;https://jsonplaceholder.typicode.com/users/1/todos&quot;</span>, <span style="color: #008800; font-weight: bold">true</span>);
+    xhttp.send(<span style="background-color: #fff0f0">&#39;{&quot;userId&quot;: 1, &quot;title&quot;: &quot;This is a test&quot;, &quot;completed&quot;: false}&#39;</span>);
+    
+}
+</pre></div>
+
+                    </div>                    
+                    <div><br><button onclick="loadJsonWS();">Run loadJsonWS</button>&nbsp;&nbsp;&nbsp;<button onclick="displayAsObject();">Run displayAsObject</button>&nbsp;&nbsp;&nbsp;<button onclick="doPost();">Run doPost</button><br></div>
+                    
+                    <div><br><br>Some times we need to turn a Javascript object back into a JSON string.  We can do that with he <b>JSON.stringify</b> function.  The displayAsJson function below does that.  In the doPost function above I sent a string to the server.  Normally I would have had a Javascript object, not a string.  I would need to use the JSON.stringify function to turn the object into a string.<br><br></div>
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%">displayAsJson <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">if</span> ( todoList <span style="color: #333333">&amp;&amp;</span> todoList[<span style="color: #0000DD; font-weight: bold">0</span>] ) {
+        alert( JSON.stringify(todoList[<span style="color: #0000DD; font-weight: bold">0</span>]) );
+    } <span style="color: #008800; font-weight: bold">else</span> { 
+        alert(<span style="background-color: #fff0f0">&quot;Haven&#39;t loaded it yet or there was a problem connecting to server.&quot;</span>)
+    }
+}
+</pre>
+                        </div>
+                    </div>
+                    <div><br><button onclick="displayAsJson();">Run displayAsJson</button><br></div>
+                    
+                    <div><br><br>It important to note that JSON doesn't deal with Dates.  A date will always be a string in JSON so you have to be careful.  In the example below we see that a Javascript Date is turned into a string with the stringify function but stays a string when the parse function is used on the string again.  The example shows a couple of ways to deal with this.<br><br></div>
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%">jsonDates <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">var</span> objectWithDate <span style="color: #333333">=</span> {
+        whatIsIt<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;object with a date&quot;</span>,
+        theDate<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Date</span>()
+    };
+    <span style="color: #888888">// as a Date object</span>
+    alert( <span style="background-color: #fff0f0">&quot;theDate:&quot;</span> <span style="color: #333333">+</span> objectWithDate.theDate );
+    <span style="color: #888888">// stringify turns the date into a ISO 8601 format date string.</span>
+    <span style="color: #008800; font-weight: bold">var</span> asJson <span style="color: #333333">=</span> JSON.stringify(objectWithDate);                
+    alert( asJson );
+    <span style="color: #888888">// but parse doen&#39;t turn an ISO date string into a date!  It is still a string.</span>
+    <span style="color: #008800; font-weight: bold">var</span> backAgain <span style="color: #333333">=</span> JSON.parse(asJson);
+    alert( backAgain.theDate );
+    <span style="color: #888888">// but you can fix it easily by just assigning it to a new Date</span>
+    backAgain.theDate <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Date</span>(backAgain.theDate);
+    alert( <span style="background-color: #fff0f0">&quot;Its back... &quot;</span> <span style="color: #333333">+</span> backAgain.theDate);
+    <span style="color: #888888">// or maybe you want to do it with a constructor.</span>
+    <span style="color: #008800; font-weight: bold">var</span> newOWD <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ObjectWithDate( asJson );
+    alert( <span style="background-color: #fff0f0">&quot;new theDate:&quot;</span> <span style="color: #333333">+</span> newOWD.theDate );
+}
+
+<span style="color: #008800; font-weight: bold">function</span> ObjectWithDate( json ) { 
+    jsonObj <span style="color: #333333">=</span> JSON.parse(json);
+    <span style="color: #008800; font-weight: bold">this</span>.whatIsIt <span style="color: #333333">=</span> jsonObj.whatIsIt;
+    <span style="color: #008800; font-weight: bold">this</span>.theDate <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Date</span>(jsonObj.theDate);
+}
+</pre>
+                        </div>
+                    </div>
+                    <div><br><button onclick="jsonDates();">Run jsonDates</button><br><br><br><br><br></div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+var todoList;
+loadJsonWS = function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            todoList = JSON.parse(this.responseText);
+            alert("Loaded!");
+        } else if ( this.readyState == 4 && this.status != 200) {
+            alert("The server sent back an error! status:" + this.status + " - " + this.statusText);
+        }
+    };
+    xhttp.open("GET", "https://jsonplaceholder.typicode.com/users/1/todos", true);
+    xhttp.send();
+}
+
+displayAsObject = function() { 
+    if ( todoList && todoList[0] ) {
+        alert( "todo id: " + todoList[0].id + " - title: " + todoList[0].title + " - " + (todoList[0].completed?" It was completed.":"It wasn't completed.") );
+    } else { 
+        alert("Haven't loaded it yet or there was a problem connecting to server.")
+    }
+}
+
+doPost = function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 201) {
+            todoList = JSON.parse(this.responseText);
+            alert("Posted!");
+        } else if ( this.readyState == 4 && this.status != 200) {
+            alert("The server sent back an error! status:" + this.status + " - " + this.statusText);
+        }
+    };
+    xhttp.open("POST", "https://jsonplaceholder.typicode.com/users/1/todos", true);
+    xhttp.send('{"userId": 1, "title": "This is a test", "completed": false}');
+    
+}
+
+displayAsObject = function() { 
+    if ( todoList && todoList[0] ) {
+        alert( "todo id: " + todoList[0].id + " - title: " + todoList[0].title + " - " + (todoList[0].completed?" It was completed.":"It wasn't completed.") );
+    } else { 
+        alert("Haven't loaded it yet or there was a problem connecting to server.")
+    }
+}
+
+displayAsJson = function() {
+    if ( todoList && todoList[0] ) {
+        alert( JSON.stringify(todoList[0]) );
+    } else { 
+        alert("Haven't loaded it yet or there was a problem connecting to server.")
+    }
+}
+
+jsonDates = function() {
+    var objectWithDate = {
+        whatIsIt: "object with a date",
+        theDate: new Date()
+    };
+    // as a Date object
+    alert( "theDate:" + objectWithDate.theDate );
+    // stringify turns the date into a ISO 8601 format date string.
+    var asJson = JSON.stringify(objectWithDate);                
+    alert( asJson );
+    // but parse doen't turn an ISO date string into a date!  It is still a string.
+    var backAgain = JSON.parse(asJson);
+    alert( backAgain.theDate );
+    // but you can fix it easily by just assigning it to a new Date
+    backAgain.theDate = new Date(backAgain.theDate);
+    alert( "Its back... " + backAgain.theDate);
+    // or maybe you want to do it with a constructor.
+    var newOWD = new ObjectWithDate( asJson );
+    alert( "new theDate:" + newOWD.theDate );
+}
+
+function ObjectWithDate( json ) { 
+    jsonObj = JSON.parse(json);
+    this.whatIsIt = jsonObj.whatIsIt;
+    this.theDate = new Date(jsonObj.theDate);
+}
+
+        </script>
+    </body>
+</html>

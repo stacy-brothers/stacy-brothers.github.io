@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <title>Javascript Basics</title>
+        <link rel="stylesheet" type="text/css" href="./../index.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="clearfix">
+            <div class="header">
+                <div class="header-container">
+                    <div class="header-text">Stacy Brothers - CIT 261</div>                        
+                </div>
+            </div>
+            <div class="content">
+                <div class="page-title">Javascript Basics</div>
+                <div>
+                    <div><h3>This section goes through Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays.</h3></div>                    
+                    <div>The <b>for</b> loop executes a block of code multiple times.  In this example a for loop is contained in a function definition.  A <b>function</b> defines a set of code that can be executed as a unit of work.  The function also uses an <b>Array</b> which is a variable that contains a list.<br><br></div>
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> games <span style="color: #333333">=</span> [<span style="background-color: #fff0f0">&#39;Adventure&#39;</span>, <span style="background-color: #fff0f0">&#39;Centipede&#39;</span>, <span style="background-color: #fff0f0">&#39;Pac-Man&#39;</span>, <span style="background-color: #fff0f0">&#39;Pole Position&#39;</span>];
+forLoopFunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">for</span> ( i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>; i<span style="color: #333333">&lt;</span>games.length; i<span style="color: #333333">++</span> ) {
+        alert( <span style="background-color: #fff0f0">&quot;the value of element &quot;</span> <span style="color: #333333">+</span> i <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; of the array games is &quot;</span> <span style="color: #333333">+</span> games[i]);
+    }
+}
+</pre>
+                        </div>
+                    </div>
+                    <div><br><button onclick="forLoopFunction();">Try It</button><br></div>
+                    <div><br><br>The <b>for/in</b> loop also executes a block of code multiple times but it bases its loop off the values of an object.  In this example the for/in loop also uses 2 variables, comma and text. <b>Variables</b> are values that contain values and can be changed.<br><br></div>                    
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> greatGame <span style="color: #333333">=</span> { game<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;Adventure&#39;</span>, year<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">1980</span>, genre<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;Adventure&#39;</span> };
+forInLoopFunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">var</span> comma <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">var</span> text <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">for</span> ( x <span style="color: #008800; font-weight: bold">in</span> greatGame ) {
+        text <span style="color: #333333">+=</span> comma <span style="color: #333333">+</span> x <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;:&quot;</span> <span style="color: #333333">+</span> greatGame[x];
+        comma <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;, &#39;</span>                    
+    }
+    alert ( <span style="background-color: #fff0f0">&#39;This is a great game: &#39;</span> <span style="color: #333333">+</span> text);
+}
+</pre>
+                        </div>
+                        
+                    </div>
+                    
+                    <div><br><button onclick="forInLoopFunction();">Try It</button><br></div>
+                    
+                    <div><br><br>Note:  Javascript does not have an <b>Associative Array</b> but Javascript object can be treated like Associative Arrays.<br><br></div>                    
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%">associative <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    greatGame[<span style="background-color: #fff0f0">&quot;game&quot;</span>] <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Space Invaders&quot;</span>;
+    greatGame[<span style="background-color: #fff0f0">&quot;genre&quot;</span>] <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;Action&#39;</span>;
+    alert ( greatGame[<span style="background-color: #fff0f0">&quot;game&quot;</span>] <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; is in the genre &quot;</span> <span style="color: #333333">+</span> greatGame.genre <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;.&quot;</span>);
+} 
+</pre>
+                        </div>
+
+                    </div>
+                    <div><br><button onclick="associative();">Try It</button><br></div>
+                    
+                    <div><br><br><b>While</b> loops and <b>Do/While</b> loops are a lot like for loops but only have a conditional statement.  Initialization and incrementing of the loop variable must be done before and during the code block.<br><br></div>                    
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%">whileLoopFunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">var</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;
+    <span style="color: #008800; font-weight: bold">while</span> ( i<span style="color: #333333">&lt;</span>games.length ) {
+        alert( <span style="background-color: #fff0f0">&quot;the value of element &quot;</span> <span style="color: #333333">+</span> i <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; of the array games is &quot;</span> <span style="color: #333333">+</span> games[i]);
+        i<span style="color: #333333">++</span>;
+    }
+}
+
+doWhileLoopFunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">var</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span>;
+    <span style="color: #008800; font-weight: bold">do</span> {
+        alert( <span style="background-color: #fff0f0">&quot;the value of element &quot;</span> <span style="color: #333333">+</span> i <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; of the array games is &quot;</span> <span style="color: #333333">+</span> games[i]);
+        i<span style="color: #333333">++</span>;
+    } <span style="color: #008800; font-weight: bold">while</span> ( i<span style="color: #333333">&lt;</span>games.length );
+}  
+</pre>
+                        </div>
+                    </div>
+                    <div><br><button onclick="whileLoopFunction();">While</button><button onclick="doWhileLoopFunction();">Do While</button><br></div>
+                    
+                    <div><br><br>Conditional statements determine if a block of code will be evaluated.  In this code example we are passing a parameter into the function and the alert is dependent on the value parameter.<br><br></div>                    
+                    <div>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%">condFunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>( value ) {
+    <span style="color: #008800; font-weight: bold">if</span> ( value <span style="color: #333333">===</span> <span style="background-color: #fff0f0">&#39;First&#39;</span> ) {
+        alert (<span style="background-color: #fff0f0">&quot;You clicked First!&quot;</span>);
+    }
+    <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span> ( value <span style="color: #333333">===</span> <span style="background-color: #fff0f0">&#39;Last&#39;</span>) {
+        alert (<span style="background-color: #fff0f0">&quot;You clicked Last.&quot;</span>);
+    }
+    <span style="color: #008800; font-weight: bold">else</span> {
+        alert (<span style="background-color: #fff0f0">&quot;You didn&#39;t click First or Last&quot;</span>);
+    }
+}
+</pre>
+                        </div>
+                    </div>
+                    <div><br><button onclick="condFunction('First');">First</button><button onclick="condFunction('Second');">Second</button><button onclick="condFunction('Last');">Last</button><br><br><br><br></div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var games = ['Adventure', 'Centipede', 'Pac-Man', 'Pole Position'];
+            forLoopFunction = function() {
+                for ( i=0; i<games.length; i++ ) {
+                    alert( "the value of element " + i + " of the array games is " + games[i]);
+                }
+            }
+           
+            var greatGame = { game: 'Adventure', year: 1980, genre: 'Adventure' };
+            forInLoopFunction = function() {
+                var comma = '';
+                var text = '';
+                for ( x in greatGame ) {
+                    text += comma + x + ":" + greatGame[x];
+                    comma = ', '                    
+                }
+                alert ( 'This is a great game: ' + text);
+            }
+
+            associative = function() {
+                greatGame["game"] = "Space Invaders";
+                greatGame["genre"] = 'Action';
+                alert ( greatGame["game"] + " is in the genre " + greatGame.genre + ".");
+            } 
+
+            whileLoopFunction = function() {
+                var i=0;
+                while ( i<games.length ) {
+                    alert( "the value of element " + i + " of the array games is " + games[i]);
+                    i++;
+                }
+            }
+
+            doWhileLoopFunction = function() {
+                var i=0;
+                do {
+                    alert( "the value of element " + i + " of the array games is " + games[i]);
+                    i++;
+                } while ( i<games.length );
+            }  
+
+            condFunction = function( value ) {
+                if ( value === 'First' ) {
+                    alert ("You clicked First!");
+                }
+                else if ( value === 'Last') {
+                    alert ("You clicked Last.");
+                }
+                else {
+                    alert ("You didn't click First or Last");
+                }
+            }
+        </script>
+    </body>
+</html>
