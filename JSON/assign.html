@@ -14,13 +14,13 @@
             <div class="content">
                 <div class="page-title">JSON and using XMLHTTPRequest</div>
                 <div>
-                    <div><br><br>The <b>XMLHttpRequest</b> is a way to request a response from a url.  That url is usually a website and in our example it will be a website that is a RESTful web service that returns a JSON dataset.<br><br>
+                    <div><br><br>The <b>XMLHttpRequest</b> is a way to request a response from a url.  That url can be any website and in our example it will be a website that is a RESTful web service which returns a JSON dataset.<br><br>
                         There are three main parts to a XMLHttpRequest.  The <b>onreadystatechange</b> function that you need to define. The <b>open</b> function that defines the kind of request and url.  And the <b>send</b> function that starts the process.<br>
                         Some websites will require you to send header information as well.  You can do that with the <b>setRequestHeader</b> function before calling the send.<br><br>
                         The <b>onreadystatechange</b> function is called anytime that the server that you are calling sends a response back.  The important parts about this are the readyState, status and responseText.<br><br>
                         The <b>readyState</b> is a value between 0 and 4.  Really the only state we are usually interested in is state 4 which means that the server is competed it's response.<br><br>
                         The <b>status</b> is the code that tells if the call was successful or not.<br>
-                        Some typical status codes:
+                        Some typical status codes:<br>
                         - 200 - success<br>
                         - 201 - created (this would be the response if you requested a service add a record)<br>
                         - 401 - unauthorized ( this would mean you aren't allowed to use this service)<br>
