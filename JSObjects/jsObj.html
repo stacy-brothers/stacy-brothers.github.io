@@ -1,0 +1,184 @@
+<html>
+    <head>
+        <title>JSON and XMLHTTPRequest</title>
+        <link rel="stylesheet" type="text/css" href="./../index.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="clearfix">
+            <div class="header">
+                <div class="header-container">
+                    <div class="header-text">Stacy Brothers - CIT 261</div>                        
+                </div>
+            </div>
+            <div class="content">
+                <div class="page-title">Javascript Objects</div>
+                <div>
+                    <div>In the code below the function <b>doCool()</b> creates a <b>new</b> object called <b>cool</b> using the <b>constructor</b> function <b>CoolObject()</b>.  <br><br>
+                        The CoolObject function takes the argument that is passed in and creates a property on <b>this</b> new object called <b>temp</b>.  <br><br>
+                        The property temp can be accessed on the object by using a dot like this <b>cool.temp</b>.  So in our example the value of cool.temp would be 21.  <br><br>
+                        You can instantiate <b>functions</b> on an object like we created the property.  However, if you do it this way, every time you create a new object a
+                        whole new copy of the function will be created.  Another way to instantiate the functions is to use the <b>prototype</b> of the CoolObject.  
+                        The single copy of the prototype and its functions is shared by all instances of the object.  The prototype functions can access and 
+                        change properties of the object by using <b>this</b>.  In our example below both of the functions access the temp property of the object by using <b>this.temp</b>.</div>
+                    <br><br>
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="color: #888888">// the CoolObject Constructor function            </span>
+<span style="color: #008800; font-weight: bold">function</span> CoolObject( temp ) {
+    <span style="color: #888888">// add the temp property to the object and assign it the property passed in.</span>
+    <span style="color: #008800; font-weight: bold">this</span>.temp <span style="color: #333333">=</span> temp;
+};
+
+<span style="color: #888888">// add a sayit function to the CoolObject&#39;s prototype</span>
+CoolObject.prototype.sayit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #888888">// access the temp property by using this.temp</span>
+    <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;It is &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.temp <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; degrees.  Cool!&quot;</span>;
+};
+
+<span style="color: #888888">// add a lowerit function to the CoolObject&#39;s prototype</span>
+CoolObject.prototype.lowerit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #888888">// can also change the temp property</span>
+    <span style="color: #008800; font-weight: bold">this</span>.temp <span style="color: #333333">-=</span> <span style="color: #0000DD; font-weight: bold">10</span>;
+}
+
+<span style="color: #008800; font-weight: bold">function</span> doCool() {
+    <span style="color: #888888">// create a new CoolObject called cool</span>
+    cool <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CoolObject( <span style="color: #0000DD; font-weight: bold">21</span> );
+    <span style="color: #888888">// call the sayit function on the new object</span>
+    alert( cool.sayit() );
+    <span style="color: #888888">// call the lowerit function</span>
+    cool.lowerit();
+    <span style="color: #888888">// the value will have changed</span>
+    alert( cool.sayit() );
+};
+</pre>
+                    </div>
+                    <br><br>
+                    <button onclick="doCool();">Run doCool()</button>
+                    <br><br><br><br>
+                    <div>
+                        <b>Inheritance</b> with objects is done using the <b>call</b> and <b>Object.create</b> functions.  In the example below, the constructor of the 
+                        <b>WayCoolObject</b> makes itself inherit the properties of the CoolObject by calling the <b>CoolObject.call</b> function and passing in the values
+                        that the CoolObject needs.  It then creates it's own property <b>weight</b>.  <br><br>
+                        This does not cause the WayCoolObject to inherit the CoolObject's prototype and its functions though.  To do this we have to use the <b>Object.create</b> function.  
+                        This allows me to access any of the functions on the parent's prototype, like the <b>lowerit</b> function.  Note this must be done before any other functions can be called on the WayCoolObject's prototype, like the <b>wayit</b> function in the code below.<br><br>
+                        Another thing to note is that I can <b>override</b> any of the functions of the parent object by creating functions on the objects prototype with the 
+                        same name, like the <b>sayit</b> function in the example below.  I can still access the parent's version of the function by calling it on the parents 
+                        prototype and using either the <b>call</b> or the <b>apply</b> function and passing it this whatever arguments are needed if I am using apply.<br>                        
+                    </div>
+                    <br><br>
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="color: #888888">// the WayCoolObject constructor</span>
+<span style="color: #008800; font-weight: bold">function</span> WayCoolObject( temp, weight ) {
+    <span style="color: #888888">// WayCoolObject inherits all properties from CoolObject</span>
+    CoolObject.call( <span style="color: #008800; font-weight: bold">this</span>, temp );
+    <span style="color: #888888">// and adds a weight property</span>
+    <span style="color: #008800; font-weight: bold">this</span>.weight <span style="color: #333333">=</span> weight;
+}
+
+<span style="color: #888888">// Also have to inherit the prototype of the CoolObject</span>
+WayCoolObject.prototype <span style="color: #333333">=</span> <span style="color: #007020">Object</span>.create(CoolObject.prototype);
+
+<span style="color: #888888">// Now can add new functions for the WayCoolObject</span>
+WayCoolObject.prototype.wayit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;It weighs &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.weight <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;lbs.  Way!&quot;</span>;
+}
+
+<span style="color: #888888">// Can also override the parents functions!</span>
+WayCoolObject.prototype.sayit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #888888">// Can still access the CoolObjects sayit by using the call function.  </span>
+    <span style="color: #888888">// passing this says to use the properties of this object</span>
+    val <span style="color: #333333">=</span> CoolObject.prototype.sayit.call( <span style="color: #008800; font-weight: bold">this</span> );
+    <span style="color: #008800; font-weight: bold">return</span> val <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">&quot;  Way Cool!&quot;</span>;
+}
+
+doWayCool <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #888888">// create a new WayCoolObject called way</span>
+    way <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> WayCoolObject( <span style="color: #0000DD; font-weight: bold">32</span>, <span style="color: #0000DD; font-weight: bold">150</span> );
+    <span style="color: #888888">// call the wayit function</span>
+    alert( way.wayit() );
+    <span style="color: #888888">// call the sayit function which this object overrides from the parent</span>
+    alert( way.sayit() );
+    <span style="color: #888888">// call the lowerit function which exists on the parent object</span>
+    way.lowerit();
+    alert( way.sayit() );
+}
+</pre>
+                    </div>
+                    <br><br>
+                    <button onclick="doWayCool();">Run doWayCool()</button><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+// the CoolObject Constructor function            
+function CoolObject( temp ) {
+    // add the temp property to the object and assign it the property passed in.
+    this.temp = temp;
+};
+
+// add a sayit function to the CoolObject's prototype
+CoolObject.prototype.sayit = function () {
+    // access the temp property by using this.temp
+    return "It is " + this.temp + " degrees.  Cool!";
+};
+
+// add a lowerit function to the CoolObject's prototype
+CoolObject.prototype.lowerit = function () {
+    // can also change the temp property
+    this.temp -= 10;
+}
+
+function doCool() {
+    // create a new CoolObject called cool
+    cool = new CoolObject( 21 );
+    // call the sayit function on the new object
+    alert( cool.sayit() );
+    // call the lowerit function
+    cool.lowerit();
+    // the value will have changed
+    alert( cool.sayit() );
+};
+
+// the WayCoolObject constructor
+function WayCoolObject( temp, weight ) {
+    // WayCoolObject inherits all properties from CoolObject
+    CoolObject.call( this, temp );
+    // and adds a weight property
+    this.weight = weight;
+}
+
+// Also have to inherit the prototype of the CoolObject
+WayCoolObject.prototype = Object.create(CoolObject.prototype);
+
+// Now can add new functions for the WayCoolObject
+WayCoolObject.prototype.wayit = function () {
+    return "It weighs " + this.weight + "lbs.  Way!";
+}
+
+// Can also override the parents functions!
+WayCoolObject.prototype.sayit = function () {
+    // Can still access the CoolObjects sayit by using the call function.  
+    // passing this says to use the properties of this object
+    val = CoolObject.prototype.sayit.call( this );
+    return val += "  Way Cool!";
+}
+
+doWayCool = function() {
+    // create a new WayCoolObject called way
+    way = new WayCoolObject( 32, 150 );
+    // call the wayit function
+    alert( way.wayit() );
+    // call the sayit function which this object overrides from the parent
+    alert( way.sayit() );
+    // call the lowerit function which exists on the parent object
+    way.lowerit();
+    alert( way.sayit() );
+}
+
+        </script>
+    </body>
+</html>
