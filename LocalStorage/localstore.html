@@ -1,0 +1,221 @@
+<html>
+    <head>
+        <title>Local Storage</title>
+        <link rel="stylesheet" type="text/css" href="./../index.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="clearfix">
+            <div class="header">
+                <div class="header-container">
+                    <div class="header-text">Stacy Brothers - CIT 261</div>                        
+                </div>
+            </div>
+            <div class="content">
+                <div class="page-title">Javascript Local Storage</div>
+                <div>
+                    <div>
+                    The code below stores simple variables in localstorage.  Notice that javascript doesn't differentiate between numbers and strings but values stored in localstorage will always be strings.
+                    <br>A nice tool to use when working with localstorage is the Chrome browsers developer tools.  Open the tools (Ctrl-Shft-I) and select the application tab and then select local storage from the list.  You should see all of the values you store in local storage.
+                    </div>
+                    <br>
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> storeSimple() {
+    localStorage.setItem(<span style="background-color: #fff0f0">&quot;key&quot;</span>, <span style="background-color: #fff0f0">&quot;value&quot;</span>);
+    localStorage.setItem(<span style="background-color: #fff0f0">&quot;number&quot;</span>, <span style="color: #0000DD; font-weight: bold">42</span>);
+    alert(<span style="background-color: #fff0f0">&quot;Stored Simple Values.&quot;</span>);
+}
+
+<span style="color: #008800; font-weight: bold">function</span> getSimple() {
+    <span style="color: #008800; font-weight: bold">var</span> val <span style="color: #333333">=</span> localStorage.getItem(<span style="background-color: #fff0f0">&quot;key&quot;</span>);
+    <span style="color: #008800; font-weight: bold">var</span> num <span style="color: #333333">=</span> localStorage.getItem(<span style="background-color: #fff0f0">&quot;number&quot;</span>);
+    alert(<span style="background-color: #fff0f0">&quot;value: &quot;</span> <span style="color: #333333">+</span> val <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; number:&quot;</span> <span style="color: #333333">+</span> num);
+}
+</pre>
+                    </div>
+                    <br>
+                    <button onclick="storeSimple();">call storeSimple</button>&nbsp;<button onclick="getSimple();">call getSimple</button>
+                    <br><br><br><br>
+                    <div>
+                        When storing javascript arrays in local storage you need to remember that all values will be stored as strings. <br>
+                        In the code below we have an array called list.  When we store it in local storage it is stored how javascript prints it, which is a comma separated list.<br>
+                        When we pull it back from local storage it is not an array but a simple string.  Cell [1] of the list is the string "Two" but character [1] of the string we got from local storage is "n".<br>
+                        We could use the string function split to split our string on the commas and turn it back into an array.  However we need to be careful with this because if any of the cells in our original array have commas then we don't get what we expect back.<br>
+                        It is better to use the JSON.stringify function when we set the value in local storage to store it as a json string.  Then we should alway get back what we expect.<br>                        
+                    </div>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// note that cell [2] is the string &quot;Three,Four&quot;</span>
+<span style="color: #008800; font-weight: bold">var</span> list <span style="color: #333333">=</span> [<span style="background-color: #fff0f0">&quot;One&quot;</span>, <span style="background-color: #fff0f0">&quot;Two&quot;</span>, <span style="background-color: #fff0f0">&quot;Three,Four&quot;</span>];
+
+<span style="color: #008800; font-weight: bold">function</span> storeArray() {
+    <span style="color: #888888">// note that how list is printed is also how it is </span>
+    <span style="color: #888888">// stored in localstorage, a comma separated string.</span>
+    localStorage.setItem(<span style="background-color: #fff0f0">&quot;list&quot;</span>, list);
+    alert(<span style="background-color: #fff0f0">&quot;list: &quot;</span> <span style="color: #333333">+</span> list);
+}
+
+<span style="color: #008800; font-weight: bold">function</span> getArray() {
+    <span style="color: #008800; font-weight: bold">var</span> val <span style="color: #333333">=</span> localStorage.getItem(<span style="background-color: #fff0f0">&quot;list&quot;</span>);
+    alert(<span style="background-color: #fff0f0">&quot;val: &quot;</span> <span style="color: #333333">+</span> val); <span style="color: #888888">// val is a string now not the array that list is.</span>
+    alert(<span style="background-color: #fff0f0">&quot;list[1]: &quot;</span> <span style="color: #333333">+</span> list[<span style="color: #0000DD; font-weight: bold">1</span>]); <span style="color: #888888">// the [1] cell in list is &quot;Two&quot;</span>
+    alert(<span style="background-color: #fff0f0">&quot;val[1]:&quot;</span> <span style="color: #333333">+</span> val[<span style="color: #0000DD; font-weight: bold">1</span>]); <span style="color: #888888">// the [1] cell in val is &quot;n&quot; in the word One.</span>
+    <span style="color: #008800; font-weight: bold">var</span> valArray <span style="color: #333333">=</span> localStorage.getItem(<span style="background-color: #fff0f0">&quot;list&quot;</span>).split(<span style="background-color: #fff0f0">&quot;,&quot;</span>); <span style="color: #888888">// I can split the string on the commas </span>
+    alert(<span style="background-color: #fff0f0">&quot;valArray&quot;</span> <span style="color: #333333">+</span> valArray); <span style="color: #888888">// It looks list it is the same as list </span>
+    alert(<span style="background-color: #fff0f0">&quot;list[2]: &quot;</span> <span style="color: #333333">+</span> list[<span style="color: #0000DD; font-weight: bold">2</span>]); <span style="color: #888888">// but it isn&#39;t.  cell [2] in list is &quot;Three,Four&quot;</span>
+    alert(<span style="background-color: #fff0f0">&quot;valArray[2]:&quot;</span> <span style="color: #333333">+</span> valArray[<span style="color: #0000DD; font-weight: bold">2</span>]); <span style="color: #888888">// but in our new array it is just &quot;Three&quot;</span>
+}
+
+<span style="color: #008800; font-weight: bold">function</span> storeArrayJson() {
+    <span style="color: #888888">// better to store everying that isn&#39;t a simple object as a JSON string.</span>
+    <span style="color: #008800; font-weight: bold">var</span> listJson <span style="color: #333333">=</span> JSON.stringify(list);
+    localStorage.setItem(<span style="background-color: #fff0f0">&quot;listJson&quot;</span>,listJson);
+    alert( <span style="background-color: #fff0f0">&quot;listJson: &quot;</span> <span style="color: #333333">+</span> listJson);
+}
+
+<span style="color: #008800; font-weight: bold">function</span> getArrayJson() {
+    <span style="color: #888888">// again the value that comes back from getItem is always a string.</span>
+    <span style="color: #008800; font-weight: bold">var</span> val <span style="color: #333333">=</span> localStorage.getItem(<span style="background-color: #fff0f0">&quot;listJson&quot;</span>);
+    alert(<span style="background-color: #fff0f0">&quot;val&quot;</span> <span style="color: #333333">+</span> val);
+    alert(<span style="background-color: #fff0f0">&quot;list[2]: &quot;</span> <span style="color: #333333">+</span> list[<span style="color: #0000DD; font-weight: bold">2</span>]); <span style="color: #888888">// cell [2] in the original is &quot;Three,Four&quot;</span>
+    <span style="color: #888888">// but in the value returned is &quot;O&quot; which is the third char in the string [&quot;One...</span>
+    alert(<span style="background-color: #fff0f0">&quot;val[2]:&quot;</span> <span style="color: #333333">+</span> val[<span style="color: #0000DD; font-weight: bold">2</span>]);
+    <span style="color: #008800; font-weight: bold">var</span> valArray <span style="color: #333333">=</span> JSON.parse(localStorage.getItem(<span style="background-color: #fff0f0">&quot;listJson&quot;</span>)); <span style="color: #888888">// need to parse the JSON</span>
+    alert(<span style="background-color: #fff0f0">&quot;valArray[2]:&quot;</span> <span style="color: #333333">+</span> valArray[<span style="color: #0000DD; font-weight: bold">2</span>]); <span style="color: #888888">// now the cell [2] is correct &quot;Three,Four&quot; </span>
+}
+</pre></div>
+                    <br><br>
+                    <button onclick="storeArray();">call storeArray</button>&nbsp;<button onclick="getArray();">call getArray</button><br><br>
+                    <button onclick="storeArrayJson();">call storeArray</button>&nbsp;<button onclick="getArrayJson();">call getArrayJson</button>
+                    <br><br><br><br>
+                    <div>
+                    Javascript objects are pretty much the same as Arrays.  If I try to store an object in local storage it will store what would be printed in an alert, which is the string "[object,Object]".<br>
+                    That isn't what we want so we should always store it as a json string.  Remember that the value returned from localstorage is always a string so we will need to parse it to make it an object again.  
+                    </div>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> obj <span style="color: #333333">=</span> { thing<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;one&quot;</span>, other<span style="color: #333333">:</span> <span style="color: #0000DD; font-weight: bold">2</span>, funky<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;{ blah: &#39;yadda&#39; }&quot;</span> };
+
+<span style="color: #008800; font-weight: bold">function</span> storeObject() {
+    localStorage.setItem(<span style="background-color: #fff0f0">&quot;obj&quot;</span>, obj);
+    alert(<span style="background-color: #fff0f0">&quot;obj:&quot;</span> <span style="color: #333333">+</span> obj);
+}
+
+<span style="color: #008800; font-weight: bold">function</span> storeObjectJson() {
+    <span style="color: #888888">// always JSON.stringify all objects before putting them in localstorage</span>
+    objJson <span style="color: #333333">=</span> JSON.stringify(obj);
+    localStorage.setItem(<span style="background-color: #fff0f0">&quot;objJson&quot;</span>, objJson);
+    alert(<span style="background-color: #fff0f0">&quot;objJson:&quot;</span> <span style="color: #333333">+</span> objJson);    
+}
+
+<span style="color: #008800; font-weight: bold">function</span> getObjectJson() {
+    <span style="color: #008800; font-weight: bold">var</span> val <span style="color: #333333">=</span> localStorage.getItem(<span style="background-color: #fff0f0">&quot;objJson&quot;</span>);
+    <span style="color: #888888">// all values in localstorage are strings</span>
+    alert(<span style="background-color: #fff0f0">&quot;val: &quot;</span> <span style="color: #333333">+</span> val);
+    <span style="color: #888888">// strings don&#39;t have a thing property</span>
+    alert(<span style="background-color: #fff0f0">&quot;val.thing: &quot;</span> <span style="color: #333333">+</span> val.thing);
+    <span style="color: #888888">// JSON.parse the json string to make it an object again</span>
+    <span style="color: #008800; font-weight: bold">var</span> valParsed <span style="color: #333333">=</span> JSON.parse(val);
+    alert(<span style="background-color: #fff0f0">&quot;valParsed: &quot;</span> <span style="color: #333333">+</span> valParsed);
+    <span style="color: #888888">// the object has a thing property</span>
+    alert(<span style="background-color: #fff0f0">&quot;valParsed.thing: &quot;</span> <span style="color: #333333">+</span> valParsed.thing);
+    <span style="color: #888888">// note that the string funky is still a string even thought it contains json</span>
+    alert(<span style="background-color: #fff0f0">&quot;valParsed.funky: &quot;</span> <span style="color: #333333">+</span> valParsed.funky);
+    <span style="color: #888888">// the parse kept it a string as it should have.  strings don&#39;t have blah properties </span>
+    alert(<span style="background-color: #fff0f0">&quot;valParsed.funky.blah: &quot;</span> <span style="color: #333333">+</span> valParsed.funky.blah);
+}
+</pre></div>
+
+                    <br><br>
+                    <button onclick="storeObject();">call storeObject</button>&nbsp;<button onclick="storeObjectJson();">call storeObjectJson</button>
+                    &nbsp;<button onclick="getObjectJson();">call getObjectJson</button>
+                    <br><br><br><br>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+
+function storeSimple() {
+    localStorage.setItem("key", "value");
+    localStorage.setItem("number", 42);
+    alert("Stored Simple Values.");
+}
+
+function getSimple() {
+    var val = localStorage.getItem("key");
+    var num = localStorage.getItem("number");
+    alert("value: " + val + " number:" + num);
+}
+
+// note that cell [2] is the string "Three,Four"
+var list = ["One", "Two", "Three,Four"];
+
+function storeArray() {
+    // note that how list is printed is also how it is 
+    // stored in localstorage, a comma separated string.
+    localStorage.setItem("list", list);
+    alert("list: " + list);
+}
+
+function getArray() {
+    var val = localStorage.getItem("list");
+    alert("val: " + val); // val is a string now not the array that list is.
+    alert("list[1]: " + list[1]); // the [1] cell in list is "Two"
+    alert("val[1]:" + val[1]); // the [1] cell in val is "n" in the word One.
+    var valArray = localStorage.getItem("list").split(","); // I can split the string on the commas 
+    alert("valArray" + valArray); // It looks list it is the same as list 
+    alert("list[2]: " + list[2]); // but it isn't.  cell [2] in list is "Three,Four"
+    alert("valArray[2]:" + valArray[2]); // but in our new array it is just "Three"
+}
+
+function storeArrayJson() {
+    // better to store everying that isn't a simple object as a JSON string.
+    var listJson = JSON.stringify(list);
+    localStorage.setItem("listJson",listJson);
+    alert( "listJson: " + listJson);
+}
+
+function getArrayJson() {
+    // again the value that comes back from getItem is always a string.
+    var val = localStorage.getItem("listJson");
+    alert("val" + val);
+    alert("list[2]: " + list[2]); // cell [2] in the original is "Three,Four"
+    // but in the value returned is "O" which is the third char in the string ["One...
+    alert("val[2]:" + val[2]);
+    var valArray = JSON.parse(localStorage.getItem("listJson")); // need to parse the JSON
+    alert("valArray[2]:" + valArray[2]); // now the cell [2] is correct "Three,Four" 
+}
+
+var obj = { thing: "one", other: 2, funky: "{ blah: 'yadda' }" };
+
+function storeObject() {
+    localStorage.setItem("obj", obj);
+    alert("obj:" + obj);
+}
+
+function storeObjectJson() {
+    // always JSON.stringify all objects before putting them in localstorage
+    objJson = JSON.stringify(obj);
+    localStorage.setItem("objJson", objJson);
+    alert("objJson:" + objJson);    
+}
+
+function getObjectJson() {
+    var val = localStorage.getItem("objJson");
+    // all values in localstorage are strings
+    alert("val: " + val);
+    // strings don't have a thing property
+    alert("val.thing: " + val.thing);
+    // JSON.parse the json string to make it an object again
+    var valParsed = JSON.parse(val);
+    alert("valParsed: " + valParsed);
+    // the object has a thing property
+    alert("valParsed.thing: " + valParsed.thing);
+    // note that the string funky is still a string even thought it contains json
+    alert("valParsed.funky: " + valParsed.funky);
+    // the parse kept it a string as it should have.  strings don't have blah properties 
+    alert("valParsed.funky.blah: " + valParsed.funky.blah);
+}
+        </script>
+    </body>
+</html>
