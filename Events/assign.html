@@ -133,10 +133,10 @@ exampleInput.onmouseup = function() {
 exampleInput.onmouseover = function() {
     document.getElementById("span5").innerHTML="Mouse Over";
 }
-exampleInput.touchstart = function() {
+document.getElementById("span6").touchstart = function() {
     document.getElementById("span6").innerHTML="Touched it.";
 }
-exampleInput.touchend = function(event) {
+document.getElementById("span6").touchend = function(event) {
     let span = document.getElementById("span6");
     let x = event.changedTouches[0].clientX;
     let y = event.changedTouches[0].clientY
