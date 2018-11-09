@@ -66,10 +66,10 @@ exampleInput.onmouseup <span style="color: #333333">=</span> <span style="color:
 exampleInput.onmouseover <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
     <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span5&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Mouse Over&quot;</span>;
 }
-exampleInput.touchstart <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+exampleInput.ontouchstart <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
     <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span6&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Touched it.&quot;</span>;
 }
-exampleInput.touchend <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(event) {
+exampleInput.ontouchend <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(event) {
     <span style="color: #008800; font-weight: bold">let</span> span <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span6&quot;</span>);
     <span style="color: #008800; font-weight: bold">let</span> x <span style="color: #333333">=</span> event.changedTouches[<span style="color: #0000DD; font-weight: bold">0</span>].clientX;
     <span style="color: #008800; font-weight: bold">let</span> y <span style="color: #333333">=</span> event.changedTouches[<span style="color: #0000DD; font-weight: bold">0</span>].clientY
