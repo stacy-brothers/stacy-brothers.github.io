@@ -38,7 +38,7 @@
                     <span id="span3">Span #3</span>&nbsp;&nbsp;&nbsp;
                     <span id="span4">Span #4</span>&nbsp;&nbsp;&nbsp;
                     <span id="span5">Span #5</span>&nbsp;&nbsp;&nbsp;
-                    <div id="span6" style="height: 30px; background-color: green; width: 30px">Span #6</div>&nbsp;&nbsp;&nbsp;
+                    <span id="span6">Span #6</span>&nbsp;&nbsp;&nbsp;
                     <br><br><br>
                     <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">exampleInput <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;exampleInput&quot;</span>);
 exampleInput.onfocus <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
@@ -133,10 +133,10 @@ exampleInput.onmouseup = function() {
 exampleInput.onmouseover = function() {
     document.getElementById("span5").innerHTML="Mouse Over";
 }
-document.getElementById("span6").ontouchstart = function() {
+exampleInput.ontouchstart = function() {
     document.getElementById("span6").innerHTML="Touched it.";
 }
-document.getElementById("span6").ontouchend = function(event) {
+exampleInput.ontouchend = function(event) {
     let span = document.getElementById("span6");
     let x = event.changedTouches[0].clientX;
     let y = event.changedTouches[0].clientY
