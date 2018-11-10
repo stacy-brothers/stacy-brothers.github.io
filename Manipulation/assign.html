@@ -20,15 +20,69 @@
                         function to create the button element and then the appendChild element to append it to the
                         end of the contents of another element.  Note that after I create an element I can add properties 
                         like an onclick event or an id or I can add to the contents to that element with appendChild. 
-                        see function createButton;
+                        see my example function createButton;
                     </p>
                     <p>
                         If I wanted to insert an element before or after another element there are functions for that.  
-                        In createBtnTwo I am using 
+                        In the my example function createBtnTwo I am using the insertBefore function but I could have also used 
+                        insertAdjacentElement.  
+                    </p>
+                    <p>
+                        I can also replace or remove an element using the replaceChild or removeChild functions as in 
+                        my example functions replaceIt and removeIt.
                     </p>
                     <p id="parent1"><button id="createBtn" onclick="createButton();">Run createButton</button></p>
+                    <br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> createButton() { 
+    <span style="color: #888888">//create the button element</span>
+    <span style="color: #008800; font-weight: bold">var</span> btnOne <span style="color: #333333">=</span> <span style="color: #007020">document</span>.createElement(<span style="background-color: #fff0f0">&quot;BUTTON&quot;</span>);
+    <span style="color: #888888">// change some of the properties of the element</span>
+    btnOne.onclick <span style="color: #333333">=</span> createBtnTwo;
+    btnOne.id <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;btn1&#39;</span>;
+    <span style="color: #888888">// add a child to the button that is a text node</span>
+    <span style="color: #008800; font-weight: bold">var</span> text <span style="color: #333333">=</span> <span style="color: #007020">document</span>.createTextNode(<span style="background-color: #fff0f0">&quot;Insert More&quot;</span>);
+    btnOne.appendChild(text);
+    <span style="color: #888888">// append it to the parent1 div</span>
+    <span style="color: #008800; font-weight: bold">var</span> parent1 <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;parent1&#39;</span>);
+    parent1.appendChild(btnOne);
+}
+
+<span style="color: #008800; font-weight: bold">function</span> createBtnTwo() {
+    <span style="color: #888888">// need the parent again</span>
+    <span style="color: #008800; font-weight: bold">var</span> parent1 <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;parent1&#39;</span>);
+    <span style="color: #888888">// and the element we want to insert before</span>
+    <span style="color: #008800; font-weight: bold">var</span> btn1 <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;btn1&#39;</span>);
+    <span style="color: #888888">// create the new element</span>
+    <span style="color: #008800; font-weight: bold">var</span> before <span style="color: #333333">=</span> <span style="color: #007020">document</span>.createElement(<span style="background-color: #fff0f0">&#39;BUTTON&#39;</span>);
+    before.onclick <span style="color: #333333">=</span> replaceIt;
+    before.id <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;beforeBtn&#39;</span>;
+    <span style="color: #008800; font-weight: bold">var</span> btext <span style="color: #333333">=</span> <span style="color: #007020">document</span>.createTextNode(<span style="background-color: #fff0f0">&quot;Before! Click Me Next!&quot;</span>);
+    before.appendChild(btext);
+    <span style="color: #888888">// insert element before other element</span>
+    parent1.insertBefore(before, btn1);
+}
+
+<span style="color: #008800; font-weight: bold">function</span> replaceIt() {
+    <span style="color: #888888">// and the element we want to change</span>
+    <span style="color: #008800; font-weight: bold">var</span> btn1 <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;beforeBtn&#39;</span>);
+    <span style="color: #888888">// create a different Text Node for this button</span>
+    <span style="color: #008800; font-weight: bold">var</span> btext <span style="color: #333333">=</span> <span style="color: #007020">document</span>.createTextNode(<span style="background-color: #fff0f0">&quot;I am different! Click Me Again!&quot;</span>);
+    <span style="color: #888888">// and replace the first child of the element which should be the current text node</span>
+    btn1.replaceChild(btext, btn1.childNodes[<span style="color: #0000DD; font-weight: bold">0</span>]);
+    <span style="color: #888888">// also want to change the onclick...</span>
+    btn1.onclick <span style="color: #333333">=</span> removeIt;
+}
+
+<span style="color: #008800; font-weight: bold">function</span> removeIt() {
+    <span style="color: #888888">// need the parent again</span>
+    <span style="color: #008800; font-weight: bold">var</span> parent1 <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;parent1&#39;</span>);
+    <span style="color: #888888">// and the element we want to remove</span>
+    <span style="color: #008800; font-weight: bold">var</span> btn1 <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;beforeBtn&#39;</span>);
+    <span style="color: #888888">// remove the child from the parent</span>
+    parent1.removeChild(btn1);
+}
+</pre></div>
                     <br><br><br>
-                    
                 </div>
             </div>
         </div>
@@ -54,14 +108,32 @@ function createBtnTwo() {
     var btn1 = document.getElementById('btn1');
     // create the new element
     var before = document.createElement('BUTTON');
-    before.onclick = removeBtn2;
+    before.onclick = replaceIt;
+    before.id = 'beforeBtn';
     var btext = document.createTextNode("Before! Click Me Next!");
     before.appendChild(btext);
+    // insert element before other element
     parent1.insertBefore(before, btn1);
 }
 
-function removeBtn2() {
-    alert("did it!");
+function replaceIt() {
+    // and the element we want to change
+    var btn1 = document.getElementById('beforeBtn');
+    // create a different Text Node for this button
+    var btext = document.createTextNode("I am different! Click Me Again!");
+    // and replace the first child of the element which should be the current text node
+    btn1.replaceChild(btext, btn1.childNodes[0]);
+    // also want to change the onclick...
+    btn1.onclick = removeIt;
+}
+
+function removeIt() {
+    // need the parent again
+    var parent1 = document.getElementById('parent1');
+    // and the element we want to remove
+    var btn1 = document.getElementById('beforeBtn');
+    // remove the child from the parent
+    parent1.removeChild(btn1);
 }
         </script>
     </body>
