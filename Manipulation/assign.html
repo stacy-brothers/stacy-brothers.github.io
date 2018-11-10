@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Javascript Basics</title>
+        <title>DOM and Javascript</title>
         <link rel="stylesheet" type="text/css" href="./../index.css">        
     </head>
     <body>
@@ -11,151 +11,40 @@
                 </div>
             </div>
             <div class="content">
-                <div class="page-title">Javascript Events</div>
+                <div class="page-title">Topics 6 & 7 DOM Manipulation and Manipulating CSS Class Properties Using JavaScript</div>
+                <div><h3>Adding and changing HTML elements using DOM Manipulation</h3></div>
                 <div>
-                    There are many events in Javascript.  Most of the events revolve around dealing with user input 
-                    and state changes for pages and objects on the page.  I am going to go through some of the more 
-                    commonly used events and how they are used.                                        
-                </div>
-                <div><h3>Events dealing with user input.</h3></div>
-                <div>
-                    First notice that in the code below there are three different ways to assign a callback function to an event.<br><br>
-                    The input below is the exampleInput referenced in the Javascript.  Each of the Span #s are wrapped in span tags 
-                    and are also used in the script below.<br><br>When you move your mouse over the input the first change you will see is Span #5
-                    will be changed to "Mouse Over" as the mouseover event on the input is fired.<br><br>Then when you click in the input several 
-                    other spans will change at the same time.  Span #1 will change to "Got Focus" when the inputs onfocus event is fired, Span #3
-                    will change to "Clicked!" when the inputs onclick event is fired, and when you first pressed the mouse button down the onmousedown 
-                    event is fired that will change Span #4 to "Mouse Down".<br><br>As soon as you release the mouse button the Mouse Down will change to "Mouse Up" 
-                    as the mouse up event is fired.<br><br>Finally if you are viewing this page on a device that has a touch screen you can touch the input and fire 
-                    the touchstart event to change Span #6 to "Touch Started".  If you drag the input then you move your finger off it will be change to "Moved to ...".  
-                    Notice how we get the x and y coordinates.  All events will pass an event object into the callback function.  What you can get from the event object will 
-                    depend on they type of event.  In this case we get the x and y coordinates of changeTouches[0].  If you got the x and y in the touchstart event and then the 
-                    end you could implement some gesture like a swipe left in our app.   If you were to use two fingers to move the input you would 
-                    find that there is also a changeTouches[1] value that has the ending x and y of the second finger.  This could be used for a pinch gesture or a two finger swipe.<br><br><br>
-                    <input type="text" id="exampleInput" onblur="didBlur();"><br>
-                    <span id="span1">Span #1</span>&nbsp;&nbsp;&nbsp;
-                    <span id="span2">Span #2</span>&nbsp;&nbsp;&nbsp;
-                    <span id="span3">Span #3</span>&nbsp;&nbsp;&nbsp;
-                    <span id="span4">Span #4</span>&nbsp;&nbsp;&nbsp;
-                    <span id="span5">Span #5</span>&nbsp;&nbsp;&nbsp;
-                    <span id="span6">Span #6</span>&nbsp;&nbsp;&nbsp;
+                    <div>Pretty much anything on an HTML page can be manipulated using the Document Object Model.</div>
+                    <div>
+                        For example, if I wanted to create a button on my page I could use the document.createElement 
+                        function to create the button element and then the appendChild element to append it to the
+                        end of the contents of another element.  Note that after I create an element I can add properties 
+                        like an onclick event or an id or I can add to the contents of that element with appendChild. 
+                    </div>
+                    <div id="parent1"><button id="createBtn">Run createButton</button></div>
                     <br><br><br>
-                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">exampleInput <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;exampleInput&quot;</span>);
-exampleInput.onfocus <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span1&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Got Focus&quot;</span>;
-};            
-<span style="color: #008800; font-weight: bold">function</span> didBlur(){ 
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span1&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Did Blur&quot;</span>;
-}
-exampleInput.addEventListener(<span style="background-color: #fff0f0">&quot;keydown&quot;</span>, didKeyDown);
-<span style="color: #008800; font-weight: bold">function</span> didKeyDown() { 
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span2&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Key Down&quot;</span>;
-}
-exampleInput.onkeyup <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span2&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Key Up&quot;</span>;
-}
-exampleInput.onclick <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span3&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Clicked!&quot;</span>;
-}
-exampleInput.onmousedown <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span4&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Mouse Down&quot;</span>;
-}
-exampleInput.onmouseup <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span4&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Mouse Up&quot;</span>;
-}
-exampleInput.onmouseover <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span5&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Mouse Over&quot;</span>;
-}
-exampleInput.ontouchstart <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span6&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Touched it.&quot;</span>;
-}
-exampleInput.ontouchend <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(event) {
-    <span style="color: #008800; font-weight: bold">let</span> span <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span6&quot;</span>);
-    <span style="color: #008800; font-weight: bold">let</span> x <span style="color: #333333">=</span> event.changedTouches[<span style="color: #0000DD; font-weight: bold">0</span>].clientX;
-    <span style="color: #008800; font-weight: bold">let</span> y <span style="color: #333333">=</span> event.changedTouches[<span style="color: #0000DD; font-weight: bold">0</span>].clientY
-    span.innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Moved it to &quot;</span> <span style="color: #333333">+</span> x <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;,&quot;</span> <span style="color: #333333">+</span> y;
-}
-</pre></div>
-<br>
-                </div>
-                <div><h3>Events dealing with browser of DOM events.</h3></div>
-                <div>
-                    One of the most useful events is the onload event.  This is fired after an element has loaded.  In the code below I change the Span #7 in the body tags onload event.<br><br>
-                    This is a place where you could do a lot of initialization on a page because you know all of the pages elements have been rendered.  Foe example you might call a web service 
-                    here to get data that you will use to populate a list on the page.<br><br>
-                    The onsubmit event is probably very familiar because it is fired when a form is submitted.  This event can be used to validate data in the form among other things.<br><br>
-                    The onresize event is fired when an element gets resized.  In the example code I put is on the body tag.  I report the width and height of the page's body in Span #8.<br><br><br>
                     
-                    <span id="span7">Span #7</span>&nbsp;&nbsp;&nbsp;<span id="span8">Span #8</span><br><br>
-                    <form onsubmit="doSubmit()"><input type="text"><button>submit</button></form>   
-                    <br>
-                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">document</span>.getElementsByTagName(<span style="background-color: #fff0f0">&quot;body&quot;</span>)[<span style="color: #0000DD; font-weight: bold">0</span>].onload <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
-    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span7&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;On Load Event!&quot;</span>;
-}
-<span style="color: #008800; font-weight: bold">function</span> doSubmit() {    
-    alert(<span style="background-color: #fff0f0">&quot;You clicked it...&quot;</span>);
-    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">false</span>;
-}
-<span style="color: #007020">document</span>.getElementsByTagName(<span style="background-color: #fff0f0">&quot;body&quot;</span>)[<span style="color: #0000DD; font-weight: bold">0</span>].onresize <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(e) {
-   width <span style="color: #333333">=</span> e.target.outerWidth;
-   height <span style="color: #333333">=</span> e.target.outerHeight;
-   <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;span8&quot;</span>).innerHTML<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;Width:&quot;</span> <span style="color: #333333">+</span> width <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; Height:&quot;</span> <span style="color: #333333">+</span> height;
-}
-</pre></div><br><br><br>
-
                 </div>
             </div>
         </div>
         <script type="text/javascript">
-exampleInput = document.getElementById("exampleInput");
-exampleInput.onfocus = function() {
-    document.getElementById("span1").innerHTML="Got Focus";
-};            
-function didBlur(){ 
-    document.getElementById("span1").innerHTML="Did Blur";
-}
-exampleInput.addEventListener("keydown", didKeyDown);
-function didKeyDown() { 
-    document.getElementById("span2").innerHTML="Key Down";
-}
-exampleInput.onkeyup = function() {
-    document.getElementById("span2").innerHTML="Key Up";
-}
-exampleInput.onclick = function() {
-    document.getElementById("span3").innerHTML="Clicked!";
-}
-exampleInput.onmousedown = function() {
-    document.getElementById("span4").innerHTML="Mouse Down";
-}
-exampleInput.onmouseup = function() {
-    document.getElementById("span4").innerHTML="Mouse Up";
-}
-exampleInput.onmouseover = function() {
-    document.getElementById("span5").innerHTML="Mouse Over";
-}
-exampleInput.ontouchstart = function() {
-    document.getElementById("span6").innerHTML="Touched it.";
-}
-exampleInput.ontouchend = function(event) {
-    let span = document.getElementById("span6");
-    let x = event.changedTouches[0].clientX;
-    let y = event.changedTouches[0].clientY
-    span.innerHTML="Moved it to " + x + "," + y;
+function createButton() { 
+    //create the button element
+    var btnOne = document.createElement("BUTTON");
+    // change some of the properties of the element
+    btnOne.onclick = createBtnTwo;
+    btnOne.id = 'btn1';
+    // add a child to the button that is a text node
+    var text = document.createTextNode("Insert Another Button");
+    btnOne.appendChild(text);
+    // append it to the parent1 div
+    var parent1 = document.getElementById('parent1');
+    parent1.appendChild(btnOne);
 }
 
-document.getElementsByTagName("body")[0].onload = function() {
-    document.getElementById("span7").innerHTML="On Load Event!";
+function createBtnTwo() {
+    alert('clicked Insert Another Button...');
 }
-function doSubmit() {    
-    alert("You clicked it...");
-    return false;
-}
-document.getElementsByTagName("body")[0].onresize = function(e) {
-   width = e.target.outerWidth;
-   height = e.target.outerHeight;
-   document.getElementById("span8").innerHTML="Width:" + width + " Height:" + height;
-}
-
         </script>
     </body>
 </html>
