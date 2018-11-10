@@ -14,14 +14,18 @@
                 <div class="page-title">Topics 6 & 7 DOM Manipulation and Manipulating CSS Class Properties Using JavaScript</div>
                 <div><h3>Adding and changing HTML elements using DOM Manipulation</h3></div>
                 <div>
-                    <div>Pretty much anything on an HTML page can be manipulated using the Document Object Model.</div>
-                    <div>
+                    <p>Pretty much anything on an HTML page can be manipulated using the Document Object Model.</p>
+                    <p>
                         For example, if I wanted to create a button on my page I could use the document.createElement 
                         function to create the button element and then the appendChild element to append it to the
                         end of the contents of another element.  Note that after I create an element I can add properties 
-                        like an onclick event or an id or I can add to the contents of that element with appendChild. 
-                    </div>
-                    <div id="parent1"><button id="createBtn">Run createButton</button></div>
+                        like an onclick event or an id or I can add to the contents to that element with appendChild. 
+                    </p>
+                    <p>
+                        If I wanted to insert an element before or after another element there are functions for that.  
+                        
+                    </p>
+                    <p id="parent1"><button id="createBtn" onclick="createButton();">Run createButton</button></p>
                     <br><br><br>
                     
                 </div>
@@ -35,7 +39,7 @@ function createButton() {
     btnOne.onclick = createBtnTwo;
     btnOne.id = 'btn1';
     // add a child to the button that is a text node
-    var text = document.createTextNode("Insert Another Button");
+    var text = document.createTextNode("Insert More");
     btnOne.appendChild(text);
     // append it to the parent1 div
     var parent1 = document.getElementById('parent1');
@@ -43,7 +47,20 @@ function createButton() {
 }
 
 function createBtnTwo() {
-    alert('clicked Insert Another Button...');
+    // need the parent again
+    var parent1 = document.getElementById('parent1');
+    // and the element we want to insert before
+    var btn1 = document.getElementById('btn1');
+    // create the new element
+    var before = document.createElement('BUTTON');
+    before.onclick = removeBtn2;
+    var btext = document.createTextNode("Before! Click Me Next!");
+    before.appendChild(btext);
+    btn1.insertBefore(before, btn1);
+}
+
+function removeBtn2() {
+    alert("did it!");
 }
         </script>
     </body>
