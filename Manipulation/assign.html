@@ -20,10 +20,11 @@
                         function to create the button element and then the appendChild element to append it to the
                         end of the contents of another element.  Note that after I create an element I can add properties 
                         like an onclick event or an id or I can add to the contents to that element with appendChild. 
+                        see function createButton;
                     </p>
                     <p>
                         If I wanted to insert an element before or after another element there are functions for that.  
-                        
+                        In createBtnTwo I am using 
                     </p>
                     <p id="parent1"><button id="createBtn" onclick="createButton();">Run createButton</button></p>
                     <br><br><br>
@@ -56,7 +57,7 @@ function createBtnTwo() {
     before.onclick = removeBtn2;
     var btext = document.createTextNode("Before! Click Me Next!");
     before.appendChild(btext);
-    btn1.insertBefore(before, btn1);
+    parent1.insertBefore(before, btn1);
 }
 
 function removeBtn2() {
