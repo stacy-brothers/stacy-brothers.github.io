@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <title>Transitions, Transforms and Animations</title>
+        <link rel="stylesheet" type="text/css" href="./../index.css">
+<style type="text/css">
+    @keyframes rollIt {
+        65% { color: red; transform: scale(3) translate(200px, 0px);}
+        100% { color: black; transform: scale(1) translate(0px, 0px);}
+    }
+
+    .one {
+        animation-name: rollIt;
+        animation-duration: 4s;
+    }
+</style>
+    </head>
+    <body>
+        <div class="clearfix">
+            <div class="header">
+                <div class="header-container">
+                    <div class="header-text">Stacy Brothers - CIT 261</div>                        
+                </div>
+            </div>
+            <div class="content">
+                <div class="page-title">Topics 8, 10, 11 & 12 - Transitions, Transforms and Animations (oh, my!)</div>
+                <div>                    
+                    <p>
+                        CSS transforms allow you to rotate, move, scale and such HTML elements.  A good example of 
+                        this is the name/class bar on the side of this page. It uses a style transform: rotate(-90deg) to 
+                        rotate the text.  Transforms, like other style properties can be changed in javascript like in the code below.
+                    </p>
+                    <div style="height:80px; width: 100px">
+                        <div id="test1">Testing 1 2 3.</div>
+                    </div>
+                    <br><br>
+                     <button onclick="moveIt();">Run moveIt</button> <button onclick="rotateIt();">Run rotateIt</button> <button onclick="scaleIt();">Run scaleIt</button>
+                     <br><br> <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> transform <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+<span style="color: #008800; font-weight: bold">function</span> moveIt() {
+    transform <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">&quot; translate(0px, 40px)&quot;</span>;
+    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;test1&#39;</span>).style.transform <span style="color: #333333">=</span> transform;
+}
+<span style="color: #008800; font-weight: bold">function</span> rotateIt() {
+    transform <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">&quot; rotate(30deg)&quot;</span>;
+    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;test1&#39;</span>).style.transform <span style="color: #333333">=</span> transform;
+}
+<span style="color: #008800; font-weight: bold">function</span> scaleIt() {
+    transform <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">&quot; scale(2)&quot;</span>;
+    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;test1&#39;</span>).style.transform <span style="color: #333333">=</span> transform;
+}
+</pre></div>
+
+                    <br><br>
+                    <p>
+                        Transition will allow you to "transform" a change in style over a period of time.  
+                        This can be done in a style sheet and kicked off in events or even easier in Javascript.
+                        One thing about transforms is that they are applied based on other styles.
+                        In the example below the transition of 5 seconds applies to changes in the transform style property.                        
+                    </p>
+                    <div style="height:80px; width: 100px">
+                        <div id="test2">Testing 4 5 6.</div>
+                    </div>
+                    <button onclick="growIt();">Run growIt</button> <button onclick="shrinkIt();">Run shrinkIt</button>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;test2&#39;</span>).style.transition <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;transform 5s&#39;</span>;
+<span style="color: #008800; font-weight: bold">var</span> scale <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span>;
+<span style="color: #008800; font-weight: bold">function</span> growIt() {                
+    scale<span style="color: #333333">++</span>;
+    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;test2&#39;</span>).style.transform <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;scale(&#39;</span> <span style="color: #333333">+</span> scale <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;)&#39;</span>;
+}
+<span style="color: #008800; font-weight: bold">function</span> shrinkIt() {                
+    scale<span style="color: #333333">--</span>;
+    <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;test2&#39;</span>).style.transform <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;scale(&#39;</span> <span style="color: #333333">+</span> scale <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;)&#39;</span>;
+}
+</pre></div>
+                    <br><br>
+                    <p>
+                        CSS Animations are ways to script css changes.  You cannot really create CSS Animations 
+                        with javascript but you can kick them off with it as in the code below.  Another useful 
+                        thing with animations is that you can add event listeners like animationend.
+                    </p>
+                    <div style="height:80px; width: 100px">
+                        <div id="test3">Testing 7 8 9.</div>
+                    </div>
+                    <button onclick="startRollIt();">Run startRollIt</button>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333333">&lt;</span><span style="color: #007700">style</span> <span style="color: #007700">type</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;text/css&quot;</span><span style="color: #333333">&gt;</span>
+    <span style="color: #008800; font-weight: bold">@keyframes</span> <span style="color: #007700">rollIt</span> {
+        <span style="color: #007700">65</span><span style="color: #333333">%</span> { <span style="color: #008800; font-weight: bold">color</span><span style="color: #333333">:</span> <span style="color: #007020">red</span>; transform<span style="color: #333333">:</span> scale(<span style="color: #6600EE; font-weight: bold">3</span>) translate(<span style="color: #6600EE; font-weight: bold">200px</span><span style="color: #333333">,</span> <span style="color: #6600EE; font-weight: bold">0px</span>);}
+        <span style="color: #007700">100</span><span style="color: #333333">%</span> { <span style="color: #008800; font-weight: bold">color</span><span style="color: #333333">:</span> <span style="color: #007020">black</span>; transform<span style="color: #333333">:</span> scale(<span style="color: #6600EE; font-weight: bold">1</span>) translate(<span style="color: #6600EE; font-weight: bold">0px</span><span style="color: #333333">,</span> <span style="color: #6600EE; font-weight: bold">0px</span>);}
+    }
+
+    <span style="color: #BB0066; font-weight: bold">.one</span> {
+        animation<span style="color: #333333">-</span>name<span style="color: #333333">:</span> rollIt;
+        animation<span style="color: #333333">-</span>duration<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">4s</span>;
+    }
+<span style="color: #333333">&lt;/</span><span style="color: #007700">style</span><span style="color: #333333">&gt;</span>
+</pre></div>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">function</span> <span style="color: #007700">startRollIt</span><span style="color: #333333">()</span> {
+    document<span style="color: #333333">.</span>getElementById(<span style="background-color: #fff0f0">&#39;test3&#39;</span>)<span style="color: #333333">.</span>className <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;one&#39;</span>;
+    document<span style="color: #333333">.</span>getElementById(<span style="background-color: #fff0f0">&#39;test3&#39;</span>)<span style="color: #333333">.</span>addEventListener(<span style="background-color: #fff0f0">&quot;animationend&quot;</span><span style="color: #333333">,</span>  function() <span style="color: #FF0000; background-color: #FFAAAA">{</span>
+        document<span style="color: #333333">.</span>getElementById(<span style="background-color: #fff0f0">&#39;test3&#39;</span>)<span style="color: #333333">.</span>className <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    }<span style="color: #333333">);</span>
+<span style="color: #FF0000; background-color: #FFAAAA">}</span>
+</pre></div>
+
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var transform = "";
+            function moveIt() {
+                transform += " translate(0px, 40px)";
+                document.getElementById('test1').style.transform = transform;
+            }
+            function rotateIt() {
+                transform += " rotate(30deg)";
+                document.getElementById('test1').style.transform = transform;
+            }
+            function scaleIt() {
+                transform += " scale(2)";
+                document.getElementById('test1').style.transform = transform;
+            }
+            
+            document.getElementById('test2').style.transition = 'transform 5s';
+            var scale = 1;
+            function growIt() {                
+                scale++;
+                document.getElementById('test2').style.transform = 'scale(' + scale + ')';
+            }
+            function shrinkIt() {                
+                scale--;
+                document.getElementById('test2').style.transform = 'scale(' + scale + ')';
+            }
+            
+            function startRollIt() {
+                document.getElementById('test3').className = 'one';
+                document.getElementById('test3').addEventListener("animationend",  function() {
+                    document.getElementById('test3').className = '';
+                });
+            }
+
+        </script>
+    </body>
+</html>
