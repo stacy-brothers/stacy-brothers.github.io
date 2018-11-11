@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>HTML5 Media</title>
+        <link rel="stylesheet" type="text/css" href="./../index.css">
+    </head>
+    <body>
+        <div class="clearfix">
+            <div class="header">
+                <div class="header-container">
+                    <div class="header-text">Stacy Brothers - CIT 261</div>                        
+                </div>
+            </div>
+            <div class="content">
+                <div class="page-title">Topic 10 - HTML5 Tags - Video, Audio, and Canvas</div>
+                <div>                    
+                    <p>An HTML5 audio tag will allow you to embed audio in your page.</p>
+                    <p>
+<audio controls>
+    <source src="Atari.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+                    </p>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;audio</span> <span style="color: #0000CC">controls</span><span style="color: #007700">&gt;</span>
+    <span style="color: #007700">&lt;source</span> <span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;Atari.mp3&quot;</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;audio/mpeg&quot;</span><span style="color: #007700">&gt;</span>
+    Your browser does not support the audio element.
+<span style="color: #007700">&lt;/audio&gt;</span>
+</pre></div>
+                    <p>An HTML5 video tag will allow you to put video on your page.</p>
+                    <p>
+<video width="320" height="240" controls>
+    <source src="parrots.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+                    </p>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;video</span> <span style="color: #0000CC">width=</span><span style="background-color: #fff0f0">&quot;320&quot;</span> <span style="color: #0000CC">height=</span><span style="background-color: #fff0f0">&quot;240&quot;</span> <span style="color: #0000CC">controls</span><span style="color: #007700">&gt;</span>
+    <span style="color: #007700">&lt;source</span> <span style="color: #0000CC">src=</span><span style="background-color: #fff0f0">&quot;parrots.mp4&quot;</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;video/mp4&quot;</span><span style="color: #007700">&gt;</span>
+    Your browser does not support the video tag.
+<span style="color: #007700">&lt;/video&gt;</span>
+</pre></div>
+
+                    <br><br>
+                    <p>An HTML5 canvas will allow you to create a canvas on your page which you can draw on with javascript commands. 
+                    There are many types of drawing that you can do.  Some examples are lines, fills and text.</p>
+                    <p>
+<canvas id="myCanvas" width="320" height="200"
+    style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+</canvas>
+                    </p>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;canvas</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;myCanvas&quot;</span> <span style="color: #0000CC">width=</span><span style="background-color: #fff0f0">&quot;320&quot;</span> <span style="color: #0000CC">height=</span><span style="background-color: #fff0f0">&quot;200&quot;</span>
+    <span style="color: #0000CC">style=</span><span style="background-color: #fff0f0">&quot;border:1px solid #c3c3c3;&quot;</span><span style="color: #007700">&gt;</span>
+    Your browser does not support the canvas element.
+<span style="color: #007700">&lt;/canvas&gt;</span>
+</pre></div>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333333">&lt;</span>script type<span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;text/javascript&quot;</span><span style="color: #333333">&gt;</span>
+    <span style="color: #008800; font-weight: bold">var</span> canvas <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&quot;myCanvas&quot;</span>);
+    <span style="color: #008800; font-weight: bold">var</span> ctx <span style="color: #333333">=</span> canvas.getContext(<span style="background-color: #fff0f0">&quot;2d&quot;</span>);
+    <span style="color: #008800; font-weight: bold">var</span> grd <span style="color: #333333">=</span> ctx.createLinearGradient(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">320</span>,<span style="color: #0000DD; font-weight: bold">0</span>);
+    grd.addColorStop(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="background-color: #fff0f0">&quot;red&quot;</span>);
+    grd.addColorStop(<span style="color: #0000DD; font-weight: bold">1</span>,<span style="background-color: #fff0f0">&quot;white&quot;</span>);
+    ctx.fillStyle <span style="color: #333333">=</span> grd;
+    ctx.fillRect(<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">0</span>,<span style="color: #0000DD; font-weight: bold">320</span>,<span style="color: #0000DD; font-weight: bold">200</span>);
+    ctx.fillStyle <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;black&#39;</span>;
+    ctx.font <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;40px Arial&quot;</span>;
+    ctx.fillText(<span style="background-color: #fff0f0">&quot;This is cool.&quot;</span>,<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #0000DD; font-weight: bold">100</span>);
+    ctx.moveTo(<span style="color: #0000DD; font-weight: bold">50</span>,<span style="color: #0000DD; font-weight: bold">110</span>);
+    ctx.lineTo(<span style="color: #0000DD; font-weight: bold">250</span>,<span style="color: #0000DD; font-weight: bold">110</span>);
+    ctx.stroke();
+<span style="color: #333333">&lt;</span><span style="color: #FF0000; background-color: #FFAAAA">/script&gt;</span>
+</pre></div>
+
+                    <br><br><br>                    
+                </div>
+            </div>
+        </div>
+<script type="text/javascript">
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var grd = ctx.createLinearGradient(0,0,320,0);
+    grd.addColorStop(0,"red");
+    grd.addColorStop(1,"white");
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,320,200);
+    ctx.fillStyle = 'black';
+    ctx.font = "40px Arial";
+    ctx.fillText("This is cool.",50,100);
+    ctx.moveTo(50,110);
+    ctx.lineTo(250,110);
+    ctx.stroke();
+</script>
+    </body>
+</html>
