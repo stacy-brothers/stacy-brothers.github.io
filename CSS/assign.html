@@ -1,7 +1,27 @@
 <html>
     <head>
         <title>Manipulating CSS</title>
-        <link rel="stylesheet" type="text/css" href="./../index.css">        
+        <link rel="stylesheet" type="text/css" href="./../index.css">
+<style type="text/css">
+    .cool {
+        font-size: 30px;
+        background-color: darkblue;
+        color: white;
+        border-radius: 5px;
+        border: 2px solid black;
+        text-transform: uppercase;
+        text-align: center;
+    } 
+
+    .boring {
+        font-size: 14px;
+        background-color: white;
+        color: black;
+        border: 0px;
+        text-transform: lowercase;
+        text-align: left;
+    } 
+</style>
     </head>
     <body>
         <div class="clearfix">
@@ -12,14 +32,117 @@
             </div>
             <div class="content">
                 <div class="page-title">Topic 7 - Manipulating CSS Class Properties Using JavaScript</div>
-                <div>
+                <div>                    
                     <p>
+                        Changing the CSS style on elements is really pretty <span id='easy'>easy</span>.  
+                        In the example code below the functions change quite a few style properties of the span
+                        around the word easy above.
                     </p>
-                    <br><br><br>
+                    <button onclick="coolerIt();">Run coolerIt</button><button onclick="boringIt();">Run boringIt</button>
+                    <br><br>
+                    <p>
+                        Of course you can do it <span id='easier'>easier</span> by defining a class and just changing the class.  
+                    </p>
+                    <button onclick="moreCoolerIt();">Run moreCoolerIt</button><button onclick="moreBoringIt();">Run moreBoringIt</button>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> oldFontSize <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;            
+            
+<span style="color: #008800; font-weight: bold">function</span> coolerIt() {
+    <span style="color: #008800; font-weight: bold">var</span> easy <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;easy&#39;</span>);
+    oldFontSize <span style="color: #333333">=</span> easy.style.fontSize;
+    easy.style.fontSize <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;30px&#39;</span>;
+    easy.style.backgroundColor <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;forestgreen&#39;</span>;
+    easy.style.color <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;white&#39;</span>;
+    easy.style.borderRadius <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;5px&#39;</span>;
+    easy.style.border <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;2px solid black&#39;</span>;
+    easy.style.textTransform <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;capitalize&#39;</span>;
+    easy.style.textAlign <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;center&quot;</span>;
+}   
+
+<span style="color: #008800; font-weight: bold">function</span> boringIt() {
+    <span style="color: #008800; font-weight: bold">var</span> easy <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;easy&#39;</span>);
+    easy.style.fontSize <span style="color: #333333">=</span> oldFontSize;
+    easy.style.backgroundColor <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;white&#39;</span>;
+    easy.style.color <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;black&#39;</span>;
+    easy.style.borderRadius <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;10px&#39;</span>;
+    easy.style.border <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;0px&#39;</span>;
+    easy.style.textTransform <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;lowercase&#39;</span>;
+    easy.style.textAlign <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;left&quot;</span>;
+}
+
+<span style="color: #008800; font-weight: bold">function</span> moreCoolerIt() {
+    <span style="color: #008800; font-weight: bold">var</span> easier <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;easier&#39;</span>);
+    easier.className <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;cool&#39;</span>;
+}
+
+<span style="color: #008800; font-weight: bold">function</span> moreBoringIt() {
+    <span style="color: #008800; font-weight: bold">var</span> easier <span style="color: #333333">=</span> <span style="color: #007020">document</span>.getElementById(<span style="background-color: #fff0f0">&#39;easier&#39;</span>);
+    easier.className <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;boring&#39;</span>;
+}
+</pre></div>
+                    <br><br>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #333333">&lt;</span><span style="color: #007700">style</span> <span style="color: #007700">type</span><span style="color: #333333">=</span><span style="background-color: #fff0f0">&quot;text/css&quot;</span><span style="color: #333333">&gt;</span>
+    <span style="color: #BB0066; font-weight: bold">.cool</span> {
+        <span style="color: #008800; font-weight: bold">font-size</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">30px</span>;
+        <span style="color: #008800; font-weight: bold">background-color</span><span style="color: #333333">:</span> <span style="color: #007020">darkblue</span>;
+        <span style="color: #008800; font-weight: bold">color</span><span style="color: #333333">:</span> <span style="color: #007020">white</span>;
+        <span style="color: #008800; font-weight: bold">border</span><span style="color: #333333">-</span>radius<span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">5px</span>;
+        <span style="color: #008800; font-weight: bold">border</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">2px</span> <span style="color: #008800; font-weight: bold">solid</span> <span style="color: #007020">black</span>;
+        <span style="color: #008800; font-weight: bold">text-transform</span><span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">uppercase</span>;
+        <span style="color: #008800; font-weight: bold">text-align</span><span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">center</span>;
+    } 
+
+    <span style="color: #BB0066; font-weight: bold">.boring</span> {
+        <span style="color: #008800; font-weight: bold">font-size</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">14px</span>;
+        <span style="color: #008800; font-weight: bold">background-color</span><span style="color: #333333">:</span> <span style="color: #007020">white</span>;
+        <span style="color: #008800; font-weight: bold">color</span><span style="color: #333333">:</span> <span style="color: #007020">black</span>;
+        <span style="color: #008800; font-weight: bold">border</span><span style="color: #333333">:</span> <span style="color: #6600EE; font-weight: bold">0px</span>;
+        <span style="color: #008800; font-weight: bold">text-transform</span><span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">lowercase</span>;
+        <span style="color: #008800; font-weight: bold">text-align</span><span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">left</span>;
+    } 
+<span style="color: #333333">&lt;/</span><span style="color: #007700">style</span><span style="color: #333333">&gt;</span>
+</pre></div>
+
+
+                    <br><br><br>                    
                 </div>
             </div>
         </div>
         <script type="text/javascript">
+var oldFontSize = "";            
+            
+function coolerIt() {
+    var easy = document.getElementById('easy');
+    oldFontSize = easy.style.fontSize;
+    easy.style.fontSize = '30px';
+    easy.style.backgroundColor = 'forestgreen';
+    easy.style.color = 'white';
+    easy.style.borderRadius = '5px';
+    easy.style.border = '2px solid black';
+    easy.style.textTransform = 'capitalize';
+    easy.style.textAlign = "center";
+}   
+
+function boringIt() {
+    var easy = document.getElementById('easy');
+    easy.style.fontSize = oldFontSize;
+    easy.style.backgroundColor = 'white';
+    easy.style.color = 'black';
+    easy.style.borderRadius = '10px';
+    easy.style.border = '0px';
+    easy.style.textTransform = 'lowercase';
+    easy.style.textAlign = "left";
+}
+
+function moreCoolerIt() {
+    var easier = document.getElementById('easier');
+    easier.className = 'cool';
+}
+
+function moreBoringIt() {
+    var easier = document.getElementById('easier');
+    easier.className = 'boring';
+}
 
         </script>
     </body>
